@@ -6,7 +6,7 @@ from api import CategorySchema
 # Enrutador para difinir los endpoints
 router = APIRouter()
 
-@router.get("/", response_model=list[CategorySchema], status_code=status.HTTP_200_OK)
+@router.get("", response_model=list[CategorySchema], status_code=status.HTTP_200_OK)
 async def get_categories(db: Session = Depends(get_db)):
     return category_controller.get_categories(db)
 

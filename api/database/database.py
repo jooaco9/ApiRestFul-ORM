@@ -1,20 +1,17 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlmodel import SQLModel, create_engine, Session
+from sqlalchemy.exc import SQLAlchemyError
 
 # Creacion del Enginte contra la DB
 SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root@localhost/masterpodcast'
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
-# Genero la session
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
 # Dependencia
 def get_db():
     # Creamos la session
-    db = SessionLocal()
     try:
-        # Devolvemos la sesion
-        yield db
-    finally:
-        # Cerrar sesion al finalizar el proceso
-        db.close()
+        with Session(engine) as session:
+            yield session
+    except SQLAlchemyError as e:
+        # Manejo de errores de SQLAlchemy
+        print(f"Error al conectar con la base de datos: {e}")
+        raise

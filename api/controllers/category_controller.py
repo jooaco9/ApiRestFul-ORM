@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlmodel import select
 from api import CategoryModel
 
 def get_categories(db):
@@ -6,7 +6,7 @@ def get_categories(db):
     stmt = select(CategoryModel)
 
     # Lista de categorias
-    result = db.scalars(stmt)
+    result = db.exec(stmt)
     categories = result.all()
 
     return categories

@@ -47,7 +47,7 @@ app.add_middleware(
 app.include_router(
     categorie_router,
     tags=["categories"],
-    prefix="/categories"
+    prefix="/categorias"
 )
 
 # Manejo de EXCEPCIONES

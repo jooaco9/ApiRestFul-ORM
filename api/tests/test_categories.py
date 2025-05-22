@@ -6,7 +6,7 @@ client = TestClient(app)
 
 # Test del endpoint GET /categories
 def test_read_categories():
-    response = client.get("/categories/")
+    response = client.get("/categorias")
     print(response.json())
 
     assert response.status_code == 200

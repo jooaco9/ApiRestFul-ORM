@@ -1,13 +1,8 @@
-from sqlalchemy import Integer, String, ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-
-# Modelo Declarative Base
-class Base(DeclarativeBase):
-    pass
+from sqlmodel import SQLModel, Field
 
 # Moedelo Category
-class Category(Base):
+class Category(SQLModel, table=True):
     __tablename__ = "categories"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str]
+    id: int = Field(primary_key=True, description="Id de la categoria")
+    name: str = Field(description="Nombre de la categoria")

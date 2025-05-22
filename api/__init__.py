@@ -7,6 +7,9 @@ from api.configdoc import tags_metadata
 # Modelos DB
 from api.models.category_model import Category as CategoryModel
 
+# Schemas
+from api.schemas.category_schema import Category as CategorySchema
+
 # Controladores
 from api.controllers import category_controller
 
